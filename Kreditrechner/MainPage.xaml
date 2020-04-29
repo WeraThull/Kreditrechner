@@ -51,10 +51,10 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Text="Grundsätzliches zum Darlehen" FontSize="16" />
-            <TextBox Grid.Column="0" Grid.Row="1" Text="100000" Header="Kreditbetrag"/>
-            <TextBox Grid.Column="0" Grid.Row="2" Text="3" Header="Zinssatz in %" Background="White"/>
-            <Slider Grid.Column="1" Grid.Row="2" Margin="20,2,20,2" TickFrequency="5" SnapsTo="Ticks" Minimum="5" Maximum="30" Header="Zinsbindung" MaxHeight="60"/>
-            <DatePicker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,2,20,2" Header="Erste Rate" DayVisible="False" MaxHeight="60" Background="White"/>
+            <TextBox x:Name="textBoxKreditbetrag" Grid.Column="0" Grid.Row="1" Text="100000" Header="Kreditbetrag"/>
+            <TextBox x:Name="textBoxZinsatz" Grid.Column="0" Grid.Row="2" Text="3" Header="Zinssatz in %" Background="White"/>
+            <Slider x:Name="sliderLaufzeit" Grid.Column="1" Grid.Row="2" Margin="20,2,20,2" TickFrequency="5" SnapsTo="Ticks" Minimum="5" Maximum="30" Header="Zinsbindung" MaxHeight="60"/>
+            <DatePicker x:Name="dateTimePicker" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,2,20,2" Header="Erste Rate" DayVisible="False" MaxHeight="60" Background="White"/>
         </Grid>
         <!--zweites inneres Grid-->
         <Grid Grid.Row="3" Background="#4C808080" BorderBrush="Black" BorderThickness="1">
@@ -68,7 +68,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" Text="Tilgung des Darlehens"/>
-            <TextBox Grid.Column="0" Grid.Row="1" Text="2" Header="Tilgungssatz in %"/>
+            <TextBox x:Name="textBoxTilgungssatz" Grid.Column="0" Grid.Row="1" Text="2" Header="Tilgungssatz in %"/>
             <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"  VerticalAlignment="Center" SelectedIndex="0" Header="Darlehensart" MaxHeight="60" Background="White">
                 <ComboBoxItem Content="Annuitätendarlehen"/>
                 <ComboBoxItem Content="Tilgungsdarlehen"/>
@@ -97,7 +97,7 @@
         <Button Grid.Row="8" Content="Darlehen berechnen" MaxHeight="60" HorizontalAlignment="Center" Click="Button_Click"/>
         <!--#endregion linke Seite-->
         <TextBlock Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Text="Tilgungsplan" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
-        <controls:DataGrid x:Name="dataGrid"
+        <controls:DataGrid x:Name="dataGridView"
             Grid.Column="3" Grid.Row="1" Grid.RowSpan="7"
             AutoGenerateColumns="True"/>
     </Grid>
