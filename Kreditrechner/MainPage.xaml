@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="Kreditrechner.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Kreditrechner"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <!--#region Style definieren-->
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="CornerRadius" Value="10,10,10,10" />
+            <Setter Property="MaxHeight" Value="60" />
+            <Setter Property="Margin" Value="20,2,20,2" />
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </Page.Resources>
+    <!--#endregion-->
+    <!--äußeres Grid-->
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="3*" MaxHeight="300"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="2*" MaxHeight="200"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="2*" MaxHeight="200"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <SplitView />
+        <!--#region linke Spalte-->
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Text="Kreditrechner" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
+        <!--erstes inneres Grid-->
+        <Grid Grid.Row="1" Background="#4C808080" BorderBrush="Black" BorderThickness="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Text="Grundsätzliches zum Darlehen" FontSize="16" />
+            <TextBox Grid.Column="0" Grid.Row="1" Text="100000" Header="Kreditbetrag"/>
+            <TextBox Grid.Column="0" Grid.Row="2" Text="3" Header="Zinssatz in %" Background="White"/>
+            <Slider Grid.Column="1" Grid.Row="2" Margin="20,2,20,2" TickFrequency="5" SnapsTo="Ticks" Minimum="5" Maximum="30" Header="Zinsbindung" MaxHeight="60"/>
+            <DatePicker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,2,20,2" Header="Erste Rate" DayVisible="False" MaxHeight="60" Background="White"/>
+        </Grid>
+        <!--zweites inneres Grid-->
+        <Grid Grid.Row="3" Background="#4C808080" BorderBrush="Black" BorderThickness="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" Text="Tilgung des Darlehens"/>
+            <TextBox Grid.Column="0" Grid.Row="1" Text="2" Header="Tilgungssatz in %"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"  VerticalAlignment="Center" SelectedIndex="0" Header="Darlehensart" MaxHeight="60" Background="White">
+                <ComboBoxItem Content="Annuitätendarlehen"/>
+                <ComboBoxItem Content="Tilgungsdarlehen"/>
+            </ComboBox>
+            <TextBox Grid.Column="0" Grid.Row="2" Text="2" Header="Platzhalter"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="2" Header="Platzhalter"/>
+        </Grid>
+        <!--drittes inneres Grid-->
+        <Grid Grid.Row="5" Background="#4C808080" BorderBrush="Black" BorderThickness="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" Text="Während der Laufzeit"/>
+            <TextBox Grid.Column="0" Grid.Row="1" Text="3000" Header="Sondertilgung"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"  VerticalAlignment="Center" SelectedIndex="0" Header="Zahlweise" MaxHeight="60" Background="White">
+                <ComboBoxItem Content="monatlich"/>
+                <ComboBoxItem Content="jährlich"/>
+            </ComboBox>
+        </Grid>
+        <Button Grid.Row="8" Content="Darlehen berechnen" MaxHeight="60" HorizontalAlignment="Center" Click="Button_Click"/>
+        <!--#endregion linke Seite-->
+        <TextBlock Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Text="Tilgungsplan" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
+        <controls:DataGrid x:Name="dataGrid"
+            Grid.Column="3" Grid.Row="1" Grid.RowSpan="7"
+            AutoGenerateColumns="True"/>
+    </Grid>
+</Page>
